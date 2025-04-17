@@ -1,0 +1,41 @@
+package config
+
+import (
+	"log"
+	"os"
+
+	"github.com/joho/godotenv"
+)
+
+type Config struct {
+	Port              string
+	EmbedServiceURL   string
+	QdrantURL         string
+	MistralServiceURL string
+}
+
+var AppConfig Config
+
+func Load() {
+	// Load .env file if present
+	err := godotenv.Load()
+	if err != nil {
+		log.Println("[INFO] No .env file found, using environment variables")
+	}
+
+	AppConfig = Config{
+		Port:              getEnv("PORT", "8080"),
+		EmbedServiceURL:   getEnv("EMBED_SERVICE_URL", "http://ollama-embed.llm.svc.cluster.local:11434"),
+		QdrantURL:         getEnv("QDRANT_URL", "http://qdrant.llm.svc.cluster.local:11434"),
+		MistralServiceURL: getEnv("MISTRAL_SERVICE_URL", "http://ollama.llm.svc.cluster.local:11434"),
+	}
+}
+
+func getEnv(key, fallback string) string {
+	val := os.Getenv(key)
+	if val == "" {
+		log.Printf("[WARN] %s not set, defaulting to %s\n", key, fallback)
+		return fallback
+	}
+	return val
+}

@@ -21,14 +21,13 @@ type EmbedResponse struct {
 }
 
 func EmbedText(input string, logger *zap.Logger) ([]float32, error) {
-	payload := EmbedRequest{
-		Model: "nomic-embed-text",
-		Input: []string{input},
+	payload := map[string]string{
+		"text": input,
 	}
 
 	data, _ := json.Marshal(payload)
 
-	resp, err := http.Post(config.AppConfig.EmbedServiceURL+"/api/embeddings", "application/json", bytes.NewBuffer(data))
+	resp, err := http.Post(config.AppConfig.EmbedServiceURL+"/api/v1/embed", "application/json", bytes.NewBuffer(data))
 	if err != nil {
 		logger.Error("failed to call embed service", zap.Error(err))
 		return nil, err
@@ -36,12 +35,13 @@ func EmbedText(input string, logger *zap.Logger) ([]float32, error) {
 	defer resp.Body.Close()
 
 	if resp.StatusCode != http.StatusOK {
-		logger.Error("embed service returned non-200", zap.Int("status", resp.StatusCode))
+		body, _ := io.ReadAll(resp.Body)
+		logger.Error("embed service returned non-200", zap.Int("status", resp.StatusCode), zap.ByteString("body", body))
 		return nil, fmt.Errorf("embed service failed with status %d", resp.StatusCode)
 	}
 
 	var result struct {
-		Data []EmbedResponse `json:"data"`
+		Embedding []float32 `json:"embedding"`
 	}
 
 	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
@@ -49,11 +49,10 @@ func EmbedText(input string, logger *zap.Logger) ([]float32, error) {
 		return nil, err
 	}
 
-	if len(result.Data) == 0 {
-		body, _ := io.ReadAll(resp.Body)
-		logger.Warn("Embed response body", zap.ByteString("body", body))
-		return nil, fmt.Errorf("no embeddings returned")
+	if len(result.Embedding) != 768 {
+		logger.Warn("unexpected embedding size", zap.Int("dims", len(result.Embedding)))
+		return nil, fmt.Errorf("invalid embedding vector")
 	}
 
-	return result.Data[0].Embedding, nil
+	return result.Embedding, nil
 }

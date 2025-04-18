@@ -34,6 +34,8 @@ func SearchChunks(vector []float32, logger *zap.Logger) ([]types.Chunk, error) {
 	data, _ := json.Marshal(payload)
 
 	url := fmt.Sprintf("%s/collections/%s/points/search", config.AppConfig.QdrantURL, config.AppConfig.CollectionName)
+	logger.Info("Qdrant search config", zap.String("url", url), zap.String("collection", config.AppConfig.CollectionName))
+
 	resp, err := http.Post(url, "application/json", bytes.NewBuffer(data))
 	if err != nil {
 		logger.Error("failed to call qdrant", zap.Error(err))
@@ -46,14 +48,17 @@ func SearchChunks(vector []float32, logger *zap.Logger) ([]types.Chunk, error) {
 		return nil, fmt.Errorf("qdrant returned status %d", resp.StatusCode)
 	}
 
-	var result QdrantSearchResponse
-	if err := json.NewDecoder(resp.Body).Decode(&result); err != nil {
+	var decoded struct {
+		Result QdrantSearchResponse `json:"result"`
+	}
+
+	if err := json.NewDecoder(resp.Body).Decode(&decoded); err != nil {
 		logger.Error("failed to decode qdrant response", zap.Error(err))
 		return nil, err
 	}
 
 	var chunks []types.Chunk
-	for _, point := range result {
+	for _, point := range decoded.Result {
 		chunks = append(chunks, types.Chunk{
 			Text:  point.Payload["text"],
 			Score: point.Score,

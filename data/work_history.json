@@ -1,0 +1,235 @@
+[
+    {
+        "company": "Fanatics Betting & Gaming",
+        "title": "Director of Engineering",
+        "role": "Head of Cloud Platforms",
+        "location": "Remote (with frequent travel)",
+        "start_date": "2022-07",
+        "end_date": "2024-11",
+        "description": "Joined as an early hire (~employee #30) and founded the Cloud Platforms organization at Fanatics Betting & Gaming, a real money sports betting company. Built and scaled the org from 5 to 25 heads, including 2 managers and 4 teams: Infrastructure Platform, CI/CD Pipelines, Data Platform, and Middlewares. The organization owned all core enabling infrastructure, including cloud compute, release automation, observability, production datastores, messaging, and caching. Managed a ~$35M annual budget covering both cloud costs and headcount. Supported 400+ engineers company-wide, championing an automation-first culture and enablement over gatekeeping.",
+        "technologies": [
+            "AWS",
+            "Kubernetes (EKS)",
+            "AWS Outposts",
+            "Cloudflare",
+            "Datadog",
+            "Postgres (RDS)",
+            "Kafka (MSK)",
+            "Redis (ElastiCache)",
+            "Python",
+            "Java (Spring)",
+            "Kotlin Multiplatform",
+            "GitHub Actions",
+            "ArgoCD",
+            "JIRA"
+        ],
+        "notable_achievements": [
+            "Maintained 99.92% platform-layer uptime during the 2023 and 2024 NFL seasons, including both Super Bowl events",
+            "Reduced cloud costs by ~$9M annually through service reservation optimizations and resource efficiency efforts",
+            "Supported a service-oriented migration effort from a monolith while maintaining infrastructure stability and operability",
+            "Built platform coaching practices that enabled incident response across the company, enabling decentralized incident ownership",
+            "Regularly partnered with Security, Legal, Compliance, and Product leadership to scope and shape deliverables from the earliest stages",
+            "Created and hosted 'Happy Hour: a Non-Work Work Podcast' — an internal podcast focused on community-building in a remote-first culture, designed to recreate the social bonding of in-office environments"
+        ],
+        "reports_to": "SVP of Engineering"
+    },
+    {
+        "company": "Workiva",
+        "title": "Director of Engineering",
+        "role": "Platform Innovation – ESG Reporting",
+        "location": "Remote",
+        "start_date": "2021",
+        "end_date": "2022",
+        "description": "Led the formation and execution of a new engineering initiative focused on identifying and launching emerging product verticals within Workiva’s platform. Worked in close collaboration with product leadership to scout new market opportunities and build greenfield offerings from the ground up. Formed a hand-picked team of 5 senior engineers to build the company’s first ESG (Environmental, Social, and Governance) reporting product, taking it through its early build phase and initial launch momentum.",
+        "technologies": [
+            "AWS",
+            "Kubernetes",
+            "Cassandra (graph)",
+            "Java (Spring)",
+            "React",
+            "New Relic"
+        ],
+        "notable_achievements": [
+            "Founded and led the ESG Reporting engineering team, one of Workiva’s first dedicated new product initiatives in years",
+            "Selected by engineering and product leadership to build the team from scratch by recruiting top talent from across the company",
+            "Delivered early versions of the ESG product, laying the foundation for what became a core vertical in Workiva’s product suite"
+        ],
+        "reports_to": "VP of Engineering"
+    },
+    {
+        "company": "Workiva",
+        "title": "Director of Engineering",
+        "role": "Data Ingestion & Transformation Products",
+        "location": "Charleston, SC",
+        "start_date": "2020",
+        "end_date": "2021",
+        "description": "Led a group of colocated engineering teams focused on external data ingestion and transformation within the Workiva platform. These teams — Data Prep, Chains, and Connectors — owned the product suite that enabled customers to extract, load, and transform external data via API-driven workflows and advanced UI tooling. Upon taking over, the group was a single team experiencing natural scale inflection. Led a successful reorg to formalize product-aligned teams, created a manager training program, and graduated two new engineering managers who continue to lead at Workiva today.",
+        "technologies": [
+            "Java (Spring)",
+            "React",
+            "AWS",
+            "Kubernetes"
+        ],
+        "notable_achievements": [
+            "Successfully split and scaled a growing team into three product-aligned teams: Data Prep, Chains, and Connectors",
+            "Designed and implemented a first-time IC-to-manager training program to grow new leadership internally",
+            "Mentored and graduated two new engineering managers who continue to lead at Workiva",
+            "Supported a set of well-loved products that played a consistent role in landing new customers on the platform"
+        ],
+        "team_size": 12,
+        "reports_to": "VP of Engineering"
+    },
+    {
+        "company": "Workiva",
+        "title": "Senior Engineering Manager",
+        "role": "Quality Assessment Team (Internal Reliability Consulting)",
+        "location": "Ames, IA",
+        "start_date": "2019",
+        "end_date": "2020",
+        "description": "Created and led the Quality Assessment Team, a cross-functional internal consulting team chartered by Workiva's CTO to reduce platform downtime and improve product quality. Given a high-level mandate to 'solve the downtime problem,' recruited a small, elite team of engineers across disciplines — full-stack, infrastructure, and testing — and designed a novel, metrics-driven engagement model. Developed and operationalized 'Customer Minutes of Downtime' as a standardized impact metric, and engaged with product teams in four-week, boots-on-the-ground rotations to assess, improve, and up-level their services through direct collaboration, best practice audits, and hands-on code contributions. Concluded each engagement with a detailed report presented to the CTO and senior leadership, with prior review by the team's engineering manager to ensure trust, transparency, and accuracy.",
+        "technologies": [
+            "Python",
+            "Go",
+            "Java (Spring)",
+            "AWS",
+            "GCP",
+            "Google App Engine",
+            "Google App Engine Datastore"
+        ],
+        "notable_achievements": [
+            "Designed and implemented the 'Customer Minutes of Downtime' metric to quantify incident impact by service and team",
+            "Built an internal engagement and assessment model that became a coveted resource across engineering teams",
+            "Created the 'Good Citizen' checklist — a customized set of engineering best practices tailored to Workiva’s ecosystem",
+            "Established trust-first review practices that ensured engineering managers were respected and included in all assessments",
+            "Presented findings and recommendations to the CTO and senior leaders following each team engagement"
+        ],
+        "team_size": 4,
+        "reports_to": "VP of Cloud Operations (with regular reporting to the CTO)"
+    },
+    {
+        "company": "Workiva",
+        "title": "Engineering Manager",
+        "role": "Platform Engineering",
+        "location": "Ames, IA",
+        "start_date": "2017",
+        "end_date": "2019",
+        "description": "Managed a colocated squad of ~6 engineers within Workiva's Platform Engineering organization. Operated within a rotation-based model across three squads — one ops/on-call focused and two product-focused — delivering foundational improvements to developer experience, reliability, and infrastructure efficiency. Personally fielded over 1,000 pages in the first 10 days of the inaugural ops rotation, and led cross-squad efforts that reduced alert noise by over 60% during that first pass. Also led Workiva’s migration from its homegrown container orchestration system (Harbour) to Kubernetes, completing the effort three months ahead of schedule with minimal impact to customer availability.",
+        "technologies": [
+            "AWS",
+            "GCP",
+            "Kubernetes",
+            "Docker",
+            "Python",
+            "Go",
+            "PagerDuty"
+        ],
+        "notable_achievements": [
+            "Fielded 1,000+ pages in the first 10 days of ops rotation; led cross-squad effort that reduced alert noise by over 60%",
+            "Helped establish Workiva’s three-squad rotation model balancing ops responsibility with platform product development",
+            "Led Workiva’s migration from Harbour (custom container orchestrator) to Kubernetes, completing the project 3 months ahead of schedule with only one user-impacting incident",
+            "Improved reliability engineering culture and tooling at a time when the company was scaling rapidly"
+        ],
+        "team_size": 6,
+        "reports_to": "Director of Engineering"
+    },
+    {
+        "company": "Workiva",
+        "title": "Senior Software Engineer",
+        "role": "Reliability Engineering / Rapid Response",
+        "location": "Ames, IA",
+        "start_date": "2016",
+        "end_date": "2017",
+        "description": "Worked on the Reliability Engineering team during a transitional phase in Workiva’s evolution toward dev-owned incident response. Initially served on the Rapid Response Team, a small group of high-clearance engineers responsible for triaging live production issues in a tightly regulated, monolithic App Engine environment. Led incident response efforts across multiple high-impact production events involving sensitive pre-release financial data for Fortune 500 customers. Championed and led development of a self-service incident remediation platform, Script Runner, that enabled application developers to safely execute controlled recovery operations in production without direct access to customer data. This platform helped eliminate the dependency on a centralized Rapid Response team and laid the foundation for Workiva’s long-term incident response model.",
+        "technologies": [
+            "Python",
+            "Google App Engine",
+            "App Engine Datastore",
+            "GCP",
+            "Django",
+            "GitHub"
+        ],
+        "notable_achievements": [
+            "Designed and led implementation of Script Runner, a fully compliant self-service script execution system for production issue remediation",
+            "Eliminated centralized bottlenecks for incident response and compliance, transitioning ownership to the teams closest to the services",
+            "Routinely led live incident response efforts in a regulated, high-stakes production environment with extremely limited tooling",
+            "Dramatically improved incident response times by enabling support and dev teams to triage and resolve production issues without relying on a centralized team",
+            "Presented at industry conferences including SREcon and DevOpsDays Amsterdam on building incident response automation in regulated environments"
+        ],
+        "team_size": 6,
+        "reports_to": "Engineering Manager"
+    },
+    {
+        "company": "Workiva",
+        "title": "Software Engineer",
+        "role": "Rapid Response Team",
+        "location": "Ames, IA",
+        "start_date": "2015",
+        "end_date": "2016",
+        "description": "Served on the Rapid Response Team, a small, high-trust group responsible for diagnosing and resolving live production incidents in Workiva’s regulated, customer-facing systems. Focused on building back office support tooling and triaging urgent issues in production environments, often requiring hands-on work in the live datastore. Despite being early in my engineering career, I was routinely trusted with high-stakes incident response, an experience that gave me deep insight into production failure modes and laid the groundwork for future platform-level improvements like Script Runner.",
+        "technologies": [
+            "Python",
+            "Google App Engine",
+            "App Engine Datastore",
+            "GCP",
+            "Django",
+            "GitHub"
+        ],
+        "notable_achievements": [
+            "Led incident resolution efforts in live production environments while building internal support tooling to aid response workflows",
+            "Diagnosed complex production issues in real-time using direct analysis of application data in the App Engine Datastore",
+            "Developed a strong foundational understanding of operational risk, compliance, and production debugging under pressure",
+            "Built early empathy for the challenges of on-call and support engineering that directly informed future incident automation efforts"
+        ],
+        "team_size": 6,
+        "reports_to": "Engineering Manager"
+    },
+    {
+        "company": "Workiva",
+        "title": "Software Support Engineer",
+        "role": "Customer Support Engineering Liaison",
+        "location": "Ames, IA",
+        "start_date": "2014",
+        "end_date": "2015",
+        "description": "Served in a hybrid technical and support-facing role bridging the gap between Workiva’s engineering, customer support, and operations teams. Embedded with specific product areas to become a subject matter expert, helping investigate customer bug reports, reproduce issues, and file actionable tickets for the product engineering teams. Though this was a non-coding role, I took initiative to dig into the codebase, frequently including file and line-level details in bug tickets to accelerate dev resolution. Also independently designed and built a custom document obfuscator that allowed support teams to safely handle sensitive customer data when reproducing issues. This tool ultimately served as a portfolio piece that enabled my transition into engineering — the only such internal transition during my time at Workiva.",
+        "technologies": [
+            "Python",
+            "GitHub",
+            "GCP",
+            "Google App Engine",
+            "App Engine Datastore",
+            "Django"
+        ],
+        "notable_achievements": [
+            "Acted as a technical liaison between customer support, engineering, and ops teams, specializing in surfacing and reproducing complex customer-reported bugs",
+            "Consistently delivered deeply researched, code-annotated bug reports that improved developer turnaround and reduced issue resolution time",
+            "Designed and built a secure, font-aware document obfuscator that preserved structure while anonymizing content for safe reproduction of sensitive customer issues",
+            "Handled complex challenges around fonts, kerning, and layout preservation to ensure anonymized documents accurately reflected customer-reported issues",
+            "Leveraged the creation of a custom-built document obfuscator to demonstrate engineering capability and successfully transition into a full-time software engineering role"
+        ],
+        "team_size": 8,
+        "reports_to": "Engineering Manager"
+    },
+    {
+        "company": "Mozy (VMware, EMC)",
+        "title": "Enterprise Support Engineer",
+        "role": "Technical Support for Cloud Backup Services",
+        "location": "Pleasant Grove, UT",
+        "start_date": "2011",
+        "end_date": "2014",
+        "description": "Provided technical support for enterprise customers using Mozy’s cloud-based backup solution, working directly with system administrators deploying backup agents across large fleets of endpoints. Regularly diagnosed complex Windows system issues, parsed logs, and performed end-to-end troubleshooting of file backup and restore workflows. During weekend shifts, self-taught Python and began writing internal tools to improve support workflows. Built utilities such as a dynamic knowledge base tracker and editor to streamline documentation review and publishing processes. This experience laid the foundation for a transition into engineering.",
+        "technologies": [
+            "Python",
+            "Qt",
+            "Windows"
+        ],
+        "notable_achievements": [
+            "Provided high-touch enterprise support to IT administrators deploying cloud backup solutions across large user fleets",
+            "Performed in-depth log analysis and troubleshooting of backup failures, restore issues, and Windows-specific system errors",
+            "Self-taught Python and began building internal tooling during slow shifts, including utilities to streamline documentation workflows",
+            "Created a dynamic knowledge base tracker and editor to help the support team maintain article quality and reduce response time",
+            "Used tool-building and automation projects to begin transition from support to engineering roles"
+        ],
+        "team_size": 10,
+        "reports_to": "Support Manager"
+    }
+]

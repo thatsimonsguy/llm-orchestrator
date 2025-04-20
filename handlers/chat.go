@@ -2,13 +2,33 @@ package handlers
 
 import (
 	"encoding/json"
+	"fmt"
 	"net/http"
 
 	"go.uber.org/zap"
 
 	"matthewpsimons.com/llm-orchestrator/clients"
+	"matthewpsimons.com/llm-orchestrator/internal/promptbuilder"
 	"matthewpsimons.com/llm-orchestrator/types"
 )
+
+var (
+	systemInstructions string
+	canonicalData      map[string]string
+)
+
+func InitSystemPrompt(logger *zap.Logger) {
+	var err error
+	systemInstructions, err = promptbuilder.BuildSystemInstructions("internal/promptbuilder/prompt_instructions.txt")
+	if err != nil {
+		logger.Fatal("Failed to load system instructions", zap.Error(err))
+	}
+
+	canonicalData, err = promptbuilder.LoadCanonicalData("data")
+	if err != nil {
+		logger.Fatal("Failed to load canonical data", zap.Error(err))
+	}
+}
 
 func HandleChat(logger *zap.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
@@ -44,12 +64,30 @@ func HandleChat(logger *zap.Logger) http.HandlerFunc {
 			return
 		}
 
-		logger.Info("Retrieved chunks from Qdrant", zap.Int("count", len(chunks)))
+		var chunkTexts []string
+		for _, chunk := range chunks {
+			chunkTexts = append(chunkTexts, chunk.Text)
+		}
 
-		w.Header().Set("Content-Type", "application/json")
-		if err := json.NewEncoder(w).Encode(chunks); err != nil {
-			logger.Error("Failed to write response", zap.Error(err))
-			http.Error(w, "Failed to respond", http.StatusInternalServerError)
+		userPrompt := promptbuilder.BuildUserPrompt(chatReq.Query, chunkTexts, canonicalData, systemInstructions)
+
+		// --- Streaming setup ---
+		flusher, ok := w.(http.Flusher)
+		if !ok {
+			http.Error(w, "Streaming unsupported", http.StatusInternalServerError)
+			return
+		}
+		w.Header().Set("Content-Type", "text/event-stream")
+		w.Header().Set("Cache-Control", "no-cache")
+		w.Header().Set("Connection", "keep-alive")
+
+		err = clients.GenerateResponseStream(userPrompt, "", logger, func(chunk string) {
+			fmt.Fprintf(w, "data: %s\n\n", chunk)
+			flusher.Flush()
+		})
+
+		if err != nil {
+			logger.Error("streaming response failed", zap.Error(err))
 		}
 	}
 }

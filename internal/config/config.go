@@ -12,8 +12,11 @@ type Config struct {
 	EmbedServiceURL   string
 	QdrantURL         string
 	MistralServiceURL string
+	MistralModel      string
+	MistralStream     bool
 	CollectionName    string
 }
+
 
 var AppConfig Config
 
@@ -29,6 +32,8 @@ func Load() {
 		EmbedServiceURL:   getEnv("EMBED_SERVICE_URL", "http://ollama-embed.llm.svc.cluster.local:11434"),
 		QdrantURL:         getEnv("QDRANT_URL", "http://qdrant.llm.svc.cluster.local:11434"),
 		MistralServiceURL: getEnv("MISTRAL_SERVICE_URL", "http://ollama.llm.svc.cluster.local:11434"),
+		MistralModel:      getEnv("MISTRAL_MODEL", "mistral"),
+		MistralStream:     getEnv("MISTRAL_STREAM", "true") == "true",
 		CollectionName:    getEnv("QDRANT_COLLECTION", "matt-chunks"),
 	}
 }

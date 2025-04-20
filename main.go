@@ -16,6 +16,7 @@ func main() {
 	defer logging.Logger.Sync()
 
 	log := logging.Logger
+	handlers.InitSystemPrompt(log)
 
 	http.HandleFunc("/api/v1/chat", handlers.HandleChat(logging.Logger))
 

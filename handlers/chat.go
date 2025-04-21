@@ -32,7 +32,7 @@ func InitSystemPrompt(logger *zap.Logger) {
 
 func HandleChat(logger *zap.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "https://matthewpsimons.com")
+		w.Header().Set("Access-Control-Allow-Origin", "*") //TODO: lock this down after dev testing
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
 		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
 

@@ -17,7 +17,6 @@ type Config struct {
 	CollectionName    string
 }
 
-
 var AppConfig Config
 
 func Load() {

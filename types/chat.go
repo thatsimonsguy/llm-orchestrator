@@ -6,7 +6,7 @@ type ChatRequest struct {
 }
 
 type Chunk struct {
-	Text string  `json:"text"`
+	Text  string  `json:"text"`
 	Score float32 `json:"score"`
 }
 

@@ -39,7 +39,7 @@ lint:
 
 .PHONY: docker-build
 docker-build:
-	docker build -t $(IMAGE_FULL)
+	docker build -t $(IMAGE_FULL) .
 
 .PHONY: docker-push
 docker-push:

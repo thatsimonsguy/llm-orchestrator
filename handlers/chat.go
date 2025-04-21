@@ -32,6 +32,15 @@ func InitSystemPrompt(logger *zap.Logger) {
 
 func HandleChat(logger *zap.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "https://matthewpsimons.com")
+		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+
+		if r.Method == http.MethodOptions {
+			w.WriteHeader(http.StatusOK)
+			return
+		}
+
 		if r.Method != http.MethodPost {
 			logger.Warn("Invalid request method", zap.String("method", r.Method))
 			http.Error(w, "Only POST supported", http.StatusMethodNotAllowed)
@@ -71,7 +80,6 @@ func HandleChat(logger *zap.Logger) http.HandlerFunc {
 
 		userPrompt := promptbuilder.BuildUserPrompt(chatReq.Query, chunkTexts, canonicalData, systemInstructions)
 
-		// --- Streaming setup ---
 		flusher, ok := w.(http.Flusher)
 		if !ok {
 			http.Error(w, "Streaming unsupported", http.StatusInternalServerError)

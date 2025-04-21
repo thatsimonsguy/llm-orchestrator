@@ -28,8 +28,8 @@ func Load() {
 
 	AppConfig = Config{
 		Port:              getEnv("PORT", "8080"),
-		EmbedServiceURL:   getEnv("EMBED_SERVICE_URL", "http://ollama-embed.llm.svc.cluster.local:11434"),
-		QdrantURL:         getEnv("QDRANT_URL", "http://qdrant.llm.svc.cluster.local:11434"),
+		EmbedServiceURL:   getEnv("EMBED_SERVICE_URL", "http://embedding-service.llm.svc.cluster.local"),
+		QdrantURL:         getEnv("QDRANT_URL", "http://qdrant.llm.svc.cluster.local:6333"),
 		MistralServiceURL: getEnv("MISTRAL_SERVICE_URL", "http://ollama.llm.svc.cluster.local:11434"),
 		MistralModel:      getEnv("MISTRAL_MODEL", "mistral"),
 		MistralStream:     getEnv("MISTRAL_STREAM", "true") == "true",

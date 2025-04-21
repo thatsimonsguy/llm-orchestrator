@@ -18,7 +18,7 @@ func main() {
 	log := logging.Logger
 	handlers.InitSystemPrompt(log)
 
-	http.HandleFunc("/api/v1/chat", handlers.HandleChat(logging.Logger))
+	http.HandleFunc("/api/v1/chat", handlers.HandleChat(config.AppConfig, logging.Logger))
 
 	log.Info("Server starting", zap.String("addr", ":8080"))
 	if err := http.ListenAndServe(":8080", nil); err != nil {

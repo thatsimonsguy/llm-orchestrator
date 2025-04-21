@@ -10,6 +10,7 @@ import (
 	"matthewpsimons.com/llm-orchestrator/clients"
 	"matthewpsimons.com/llm-orchestrator/internal/promptbuilder"
 	"matthewpsimons.com/llm-orchestrator/types"
+	"matthewpsimons.com/llm-orchestrator/internal/config"
 )
 
 var (
@@ -30,7 +31,7 @@ func InitSystemPrompt(logger *zap.Logger) {
 	}
 }
 
-func HandleChat(logger *zap.Logger) http.HandlerFunc {
+func HandleChat(cfg config.Config, logger *zap.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header().Set("Access-Control-Allow-Origin", "https://matthewpsimons.com")
 		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
@@ -89,10 +90,19 @@ func HandleChat(logger *zap.Logger) http.HandlerFunc {
 		w.Header().Set("Cache-Control", "no-cache")
 		w.Header().Set("Connection", "keep-alive")
 
-		err = clients.GenerateResponseStream(userPrompt, "", logger, func(chunk string) {
-			fmt.Fprintf(w, "data: %s\n\n", chunk)
-			flusher.Flush()
-		})
+		if cfg.UseOpenAI {
+			logger.Info("Using OpenAI model")
+			err = clients.GenerateOpenAIResponseStream(cfg, userPrompt, "", logger, func(chunk string) {
+				fmt.Fprintf(w, "data: %s\n\n", chunk)
+				flusher.Flush()
+			})
+		} else {
+			logger.Info("Using Mistral model")
+			err = clients.GenerateResponseStream(userPrompt, "", logger, func(chunk string) {
+				fmt.Fprintf(w, "data: %s\n\n", chunk)
+				flusher.Flush()
+			})
+		}
 
 		if err != nil {
 			logger.Error("streaming response failed", zap.Error(err))

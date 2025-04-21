@@ -15,6 +15,10 @@ type Config struct {
 	MistralModel      string
 	MistralStream     bool
 	CollectionName    string
+
+	UseOpenAI   bool
+	OpenAIKey   string
+	OpenAIModel string
 }
 
 var AppConfig Config
@@ -34,6 +38,10 @@ func Load() {
 		MistralModel:      getEnv("MISTRAL_MODEL", "mistral"),
 		MistralStream:     getEnv("MISTRAL_STREAM", "true") == "true",
 		CollectionName:    getEnv("QDRANT_COLLECTION", "matt-chunks"),
+
+		UseOpenAI:   getEnv("USE_OPENAI", "false") == "true",
+		OpenAIKey:   getEnv("OPENAI_API_KEY", ""), // required if using openai
+		OpenAIModel: getEnv("OPENAI_MODEL", "gpt-4o"),
 	}
 }
 

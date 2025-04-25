@@ -8,9 +8,9 @@ import (
 	"go.uber.org/zap"
 
 	"matthewpsimons.com/llm-orchestrator/clients"
+	"matthewpsimons.com/llm-orchestrator/internal/config"
 	"matthewpsimons.com/llm-orchestrator/internal/promptbuilder"
 	"matthewpsimons.com/llm-orchestrator/types"
-	"matthewpsimons.com/llm-orchestrator/internal/config"
 )
 
 var (
@@ -33,9 +33,19 @@ func InitSystemPrompt(logger *zap.Logger) {
 
 func HandleChat(cfg config.Config, logger *zap.Logger) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
-		w.Header().Set("Access-Control-Allow-Origin", "https://matthewpsimons.com")
-		w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
-		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		corsDevSecret := cfg.DevCORSSecret
+		origin := r.Header.Get("Origin")
+		corsSecretHeader := r.Header.Get("X-Dev-Cors-Secret")
+
+		if origin == "http://localhost:3000" && corsSecretHeader == corsDevSecret {
+			w.Header().Set("Access-Control-Allow-Origin", origin)
+			w.Header().Set("Access-Control-Allow-Headers", "Content-Type, X-Dev-Cors-Secret")
+			w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+		} else {
+			w.Header().Set("Access-Control-Allow-Origin", "https://matthewpsimons.com")
+			w.Header().Set("Access-Control-Allow-Methods", "POST, OPTIONS")
+			w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		}
 
 		if r.Method == http.MethodOptions {
 			w.WriteHeader(http.StatusOK)
